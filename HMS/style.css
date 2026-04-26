@@ -251,3 +251,645 @@ tr:last-child td {
 tr:hover td {
   background-color: #fafbfc;
 }
+
+/* ── LOGIN PAGE ── */
+.login-page {
+  background: #f0f4f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+  padding: 24px;
+}
+
+.login-card {
+  background: white;
+  border-radius: 14px;
+  padding: 40px 36px;
+  border: 1px solid #e0e6ed;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-header h1 {
+  font-size: 26px;
+  color: #1a3c5e;
+  margin-bottom: 4px;
+}
+
+.login-header p {
+  color: #888;
+  font-size: 14px;
+}
+
+.login-hint {
+  text-align: center;
+  font-size: 12px;
+  color: #aaa;
+  margin-top: 16px;
+}
+
+.error-msg {
+  background: #fdecea;
+  color: #c62828;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+}
+
+/* ── APP LAYOUT (sidebar + main) ── */
+.app-page {
+  display: flex;
+  min-height: 100vh;
+  background: #f4f6f9;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: #1a3c5e;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+}
+
+.sidebar-logo {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-logo h2 {
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-logo p {
+  color: rgba(255,255,255,0.5);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.nav-item.active {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  border-right: 3px solid #4fc3f7;
+}
+
+.nav-icon {
+  font-size: 16px;
+}
+
+.sidebar-footer {
+  padding: 16px 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-item.logout {
+  color: rgba(255,100,100,0.8);
+}
+
+.nav-item.logout:hover {
+  color: #ff6b6b;
+  background: rgba(255,100,100,0.08);
+}
+
+/* ── MAIN CONTENT ── */
+.main-content {
+  margin-left: 240px;
+  flex: 1;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* ── TOP BAR ── */
+.topbar {
+  background: white;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e6ed;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.topbar h2 {
+  font-size: 20px;
+  color: #1a3c5e;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar-date {
+  font-size: 13px;
+  color: #888;
+}
+
+.topbar-user {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a3c5e;
+}
+
+/* ── CONTENT AREA PADDING ── */
+.stats-grid,
+.rooms-grid,
+.section-card {
+  margin: 24px 28px;
+}
+
+/* ── STAT CARDS ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #e0e6ed;
+}
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.stat-card .number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a3c5e;
+  line-height: 1;
+}
+
+.stat-card .label {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ── SECTION CARD ── */
+.section-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e0e6ed;
+  overflow: hidden;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 24px;
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.section-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a3c5e;
+}
+
+.table-wrapper {
+  padding: 0 8px;
+  overflow-x: auto;
+}
+
+/* ── ROOM CARDS ── */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.room-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e0e6ed;
+}
+
+.room-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.room-card h3 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a3c5e;
+  margin: 0;
+}
+
+.room-card p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 6px;
+}
+
+.room-card .btn {
+  margin-top: 12px;
+  width: 100%;
+}
+
+/* ── FORM INSIDE SECTION CARD ── */
+.section-card form {
+  padding: 24px;
+}
+/* ── STATS BAR ── */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin: 20px 28px 0;
+}
+
+.stats-bar-item {
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.stats-bar-num {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* ── LEGEND ── */
+.map-legend {
+  display: flex;
+  gap: 20px;
+  margin: 16px 28px 0;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+.legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+/* ── ROOM MAP CONTAINER ── */
+.room-map-container {
+  margin: 16px 28px 28px;
+}
+
+/* ── FLOOR SECTION ── */
+.floor-section {
+  margin-bottom: 24px;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #e0e6ed;
+  overflow: hidden;
+}
+
+.floor-title {
+  background: #1a3c5e;
+  color: white;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.floor-rooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+}
+
+/* ── INDIVIDUAL ROOM BUTTON ── */
+.map-room {
+  width: 80px;
+  height: 64px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 2px solid transparent;
+}
+
+.map-room:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.map-room-number {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.map-room-type {
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+/* Room status colors — matches Hotel 360 */
+.map-room-available {
+  background: #2e7d32;
+  color: white;
+}
+
+.map-room-occupied {
+  background: #c62828;
+  color: white;
+}
+
+.map-room-cleaning {
+  background: #f57f17;
+  color: white;
+}
+
+.map-room-blocked {
+  background: #888;
+  color: white;
+}
+
+/* ── MODAL ── */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-box {
+  background: white;
+  border-radius: 14px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: 16px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #f0f4f8;
+}
+
+.modal-header h3 {
+  font-size: 18px;
+  color: #1a3c5e;
+  margin-bottom: 6px;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #888;
+  padding: 0;
+  line-height: 1;
+}
+
+.modal-close:hover { color: #333; }
+
+.modal-subtitle {
+  font-size: 13px;
+  color: #888;
+  padding: 12px 24px 0;
+}
+
+#availableActions form,
+#occupiedActions,
+#cleaningActions {
+  padding: 16px 24px 24px;
+}
+
+.modal-price-box {
+  background: #f0f4f8;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.btn-secondary {
+  background: #f0f4f8;
+  color: #555;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e0e6ed;
+}
+
+/* ── PAYMENT MODES ── */
+.payment-modes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.payment-option input {
+  width: auto;
+}
+
+.payment-option span {
+  font-size: 12px;
+  text-align: center;
+}
+
+.payment-option input:checked + span {
+  color: #1a3c5e;
+  font-weight: 600;
+}
+
+/* ── GUEST INFO BOX ── */
+.guest-info-box {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.guest-info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.guest-info-row:last-child { border-bottom: none; }
+
+.guest-info-label { color: #888; }
+.guest-info-value { font-weight: 500; color: #1a3c5e; }
+
+/* ── BILL PREVIEW ── */
+.bill-preview {
+  background: #fff8e1;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.bill-preview h4 {
+  font-size: 14px;
+  color: #e65100;
+  margin-bottom: 10px;
+}
+
+.bill-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  padding: 5px 0;
+  border-bottom: 1px solid #ffe082;
+}
+
+.bill-row:last-child { border-bottom: none; }
+
+.bill-final {
+  font-size: 15px;
+  font-weight: 700;
+  color: #c62828;
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+/* ── CLEANING BOX ── */
+.cleaning-box {
+  background: #fff8e1;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 2;
+  color: #f57f17;
+  margin-bottom: 16px;
+}
+
+/* ── TOAST NOTIFICATION ── */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1a3c5e;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-size: 14px;
+  opacity: 0;
+  transition: all 0.3s;
+  z-index: 999;
+  white-space: nowrap;
+}
+
+.toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

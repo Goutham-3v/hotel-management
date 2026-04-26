@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basota Hotel – Check-In</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>🏨 Basota Hotel</h2>
+      <p>Nellore</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="rooms.html" class="nav-item">
+        <span class="nav-icon">🛏️</span> Rooms
+      </a>
+      <a href="checkin.html" class="nav-item active">
+        <span class="nav-icon">✅</span> Check-In
+      </a>
+      <a href="bookings.html" class="nav-item">
+        <span class="nav-icon">📋</span> Bookings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html" class="nav-item logout">
+        <span class="nav-icon">🚪</span> Logout
+      </a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="topbar">
+      <h2>New Check-In</h2>
+    </div>
+
+    <div class="section-card" style="max-width:600px">
+      <form id="checkinForm">
+
+        <div class="form-group">
+          <label>Customer Name</label>
+          <input type="text" id="custName"
+                 placeholder="Enter full name">
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="custPhone"
+                 placeholder="10-digit mobile number">
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Select Room</label>
+            <select id="roomSelect">
+              <option value="">-- Select Room --</option>
+              <option value="101">Room 101 – AC Double – ₹1,200/night</option>
+              <option value="103">Room 103 – AC Single – ₹900/night</option>
+              <option value="106">Room 106 – AC Single – ₹900/night</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Advance Payment (₹)</label>
+            <input type="number" id="advance"
+                   placeholder="Enter amount">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>ID Proof Type</label>
+          <select id="idProof">
+            <option value="">-- Select ID Type --</option>
+            <option value="aadhar">Aadhar Card</option>
+            <option value="pan">PAN Card</option>
+            <option value="passport">Passport</option>
+            <option value="dl">Driving License</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          ✅ Check In Customer
+        </button>
+
+      </form>
+    </div>
+
+  </main>
+
+</body>
+</html>

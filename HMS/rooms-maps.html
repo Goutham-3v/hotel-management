@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basota Hotel – Room Map</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>🏨 Basota Hotel</h2>
+      <p>Nellore</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="dashboard.html" class="nav-item">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="rooms-map.html" class="nav-item active">
+        <span class="nav-icon">🏠</span> Room Map
+      </a>
+      <a href="checkin.html" class="nav-item">
+        <span class="nav-icon">✅</span> Check-In
+      </a>
+      <a href="bookings.html" class="nav-item">
+        <span class="nav-icon">📋</span> Bookings
+      </a>
+      <a href="reports.html" class="nav-item">
+        <span class="nav-icon">📈</span> Reports
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html" class="nav-item logout">
+        <span class="nav-icon">🚪</span> Logout
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- TOP BAR -->
+    <div class="topbar">
+      <h2>Room Map / గది నక్ష</h2>
+      <div class="topbar-right">
+        <span class="topbar-date" id="currentDate"></span>
+        <span class="topbar-user">👤 Receptionist</span>
+      </div>
+    </div>
+
+    <!-- LIVE STATS BAR -->
+    <div class="stats-bar">
+      <div class="stats-bar-item" style="background:#e8f5e9;color:#2e7d32">
+        <span class="stats-bar-num" id="countAvailable">0</span>
+        <span>Vacant / ఖాళీ</span>
+      </div>
+      <div class="stats-bar-item" style="background:#fdecea;color:#c62828">
+        <span class="stats-bar-num" id="countOccupied">0</span>
+        <span>Occupied / నిండిన</span>
+      </div>
+      <div class="stats-bar-item" style="background:#fff8e1;color:#f57f17">
+        <span class="stats-bar-num" id="countCleaning">0</span>
+        <span>Cleaning / శుభ్రపరచడం</span>
+      </div>
+      <div class="stats-bar-item" style="background:#e3f2fd;color:#1565c0">
+        <span class="stats-bar-num" id="countTotal">0</span>
+        <span>Total / మొత్తం</span>
+      </div>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="map-legend">
+      <span class="legend-item">
+        <span class="legend-dot" style="background:#2e7d32"></span>
+        Available / ఖాళీ
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:#c62828"></span>
+        Occupied / నిండిన
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:#f57f17"></span>
+        Cleaning / శుభ్రపరచడం
+      </span>
+      <span class="legend-item">
+        <span class="legend-dot" style="background:#888"></span>
+        Blocked / బ్లాక్
+      </span>
+    </div>
+
+    <!-- ROOM MAP -->
+    <div class="room-map-container" id="roomMap">
+      <!-- Floors rendered by JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- CHECK-IN MODAL -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal-box">
+
+      <div class="modal-header">
+        <div>
+          <h3 id="modalRoomTitle">Room 201</h3>
+          <span id="modalRoomType" class="badge available"></span>
+        </div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <!-- AVAILABLE ROOM — show check-in form -->
+      <div id="availableActions">
+        <p class="modal-subtitle">Check-In / చెక్-ఇన్</p>
+        <form id="quickCheckinForm">
+
+          <div class="form-group">
+            <label>Guest Name / అతిథి పేరు</label>
+            <input type="text" id="guestName" placeholder="Full name">
+          </div>
+
+          <div class="form-group">
+            <label>Phone / ఫోన్</label>
+            <input type="tel" id="guestPhone" placeholder="10-digit number">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>ID Proof / గుర్తింపు</label>
+              <select id="idProof">
+                <option value="">-- Select --</option>
+                <option value="aadhar">Aadhar Card</option>
+                <option value="pan">PAN Card</option>
+                <option value="passport">Passport</option>
+                <option value="dl">Driving License</option>
+                <option value="voter">Voter ID</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Advance / అడ్వాన్స్ (₹)</label>
+              <input type="number" id="advanceAmount" placeholder="0">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Payment Mode / చెల్లింపు విధానం</label>
+            <div class="payment-modes">
+              <label class="payment-option">
+                <input type="radio" name="payMode" value="cash" checked>
+                <span>💵 Cash</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payMode" value="upi">
+                <span>📱 UPI</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payMode" value="card">
+                <span>💳 Card</span>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payMode" value="online">
+                <span>🌐 Online</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="modal-price-box">
+            <span>Room Price / గది ధర:</span>
+            <strong id="modalRoomPrice">₹0 / night</strong>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary"
+                    onclick="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-primary">
+              ✅ Check In
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- OCCUPIED ROOM — show guest info + checkout -->
+      <div id="occupiedActions" style="display:none">
+        <div class="guest-info-box">
+          <div class="guest-info-row">
+            <span class="guest-info-label">Guest / అతిథి</span>
+            <span id="occupiedGuestName" class="guest-info-value">—</span>
+          </div>
+          <div class="guest-info-row">
+            <span class="guest-info-label">Phone / ఫోన్</span>
+            <span id="occupiedPhone" class="guest-info-value">—</span>
+          </div>
+          <div class="guest-info-row">
+            <span class="guest-info-label">Check-In</span>
+            <span id="occupiedCheckIn" class="guest-info-value">—</span>
+          </div>
+          <div class="guest-info-row">
+            <span class="guest-info-label">Advance / అడ్వాన్స్</span>
+            <span id="occupiedAdvance" class="guest-info-value">—</span>
+          </div>
+        </div>
+
+        <div class="bill-preview" id="billPreview">
+          <h4>Bill Preview / బిల్లు</h4>
+          <div class="bill-row">
+            <span>Days Stayed / రోజులు</span>
+            <strong id="billDays">0</strong>
+          </div>
+          <div class="bill-row">
+            <span>Room Rate / రేటు</span>
+            <strong id="billRate">₹0</strong>
+          </div>
+          <div class="bill-row">
+            <span>Total / మొత్తం</span>
+            <strong id="billTotal">₹0</strong>
+          </div>
+          <div class="bill-row">
+            <span>Advance Paid / చెల్లించిన</span>
+            <strong id="billAdvance">₹0</strong>
+          </div>
+          <div class="bill-row bill-final">
+            <span>Balance Due / బకాయి</span>
+            <strong id="billFinal">₹0</strong>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary"
+                  onclick="setRoomCleaning()">
+            🧹 Set Cleaning
+          </button>
+          <button type="button" class="btn btn-danger"
+                  onclick="checkoutRoom()">
+            🚪 Checkout
+          </button>
+        </div>
+      </div>
+
+      <!-- CLEANING ROOM -->
+      <div id="cleaningActions" style="display:none">
+        <div class="cleaning-box">
+          <p>🧹 This room is being cleaned.</p>
+          <p>శుభ్రపరచడం జరుగుతోంది.</p>
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary"
+                  onclick="closeModal()">Cancel</button>
+          <button type="button" class="btn btn-primary"
+                  onclick="setRoomAvailable()">
+            ✅ Mark Available
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  // ── REAL ROOM DATA (Basota Hotel) ──────────────────────────────
+  const PRICES = {
+    'DBL AC': 1200,
+    'SNG AC': 900,
+    'DLX':    1500,
+    'LUX':    2000
+  };
+
+  const FLOORS = [
+    {
+      name: 'Second Floor / రెండవ అంతస్తు',
+      rooms: [
+        { number: '201', type: 'DBL AC' },
+        { number: '202', type: 'DBL AC' },
+        { number: '203', type: 'DBL AC' },
+        { number: '204', type: 'SNG AC' },
+        { number: '205', type: 'SNG AC' },
+        { number: '206', type: 'SNG AC' },
+        { number: '207', type: 'LUX'    },
+        { number: '208', type: 'DLX'    },
+        { number: '209', type: 'DLX'    },
+      ]
+    },
+    {
+      name: 'Third Floor / మూడవ అంతస్తు',
+      rooms: [
+        { number: '301', type: 'DBL AC' },
+        { number: '302', type: 'DBL AC' },
+        { number: '303', type: 'DBL AC' },
+        { number: '304', type: 'SNG AC' },
+        { number: '305', type: 'SNG AC' },
+        { number: '306', type: 'SNG AC' },
+        { number: '307', type: 'SNG AC' },
+        { number: '308', type: 'LUX'    },
+        { number: '309', type: 'DLX'    },
+        { number: '310', type: 'DLX'    },
+      ]
+    },
+    {
+      name: 'Fourth Floor / నాల్గవ అంతస్తు',
+      rooms: [
+        { number: '401', type: 'DBL AC' },
+        { number: '402', type: 'DBL AC' },
+        { number: '403', type: 'DBL AC' },
+        { number: '404', type: 'SNG AC' },
+        { number: '405', type: 'SNG AC' },
+        { number: '406', type: 'SNG AC' },
+        { number: '407', type: 'SNG AC' },
+      ]
+    }
+  ];
+
+  // ── ROOM STATE (stored in memory — later will come from database) ──
+  let roomState = {};
+
+  // Initialize all rooms as available
+  FLOORS.forEach(floor => {
+    floor.rooms.forEach(room => {
+      roomState[room.number] = {
+        status: 'available',
+        type: room.type,
+        guest: null
+      };
+    });
+  });
+
+  // Set some demo occupied rooms (like hotel 360 screenshot)
+  const demoOccupied = ['202','203','205','206','301','303','307','308','404','405','406'];
+  const demoCleaning = ['304','305'];
+  demoOccupied.forEach(r => {
+    roomState[r].status = 'occupied';
+    roomState[r].guest = {
+      name: 'Demo Guest',
+      phone: '9876543210',
+      checkIn: new Date(Date.now() - 86400000).toISOString(),
+      advance: 500,
+      payMode: 'cash'
+    };
+  });
+  demoCleaning.forEach(r => { roomState[r].status = 'cleaning'; });
+
+  // ── CURRENT SELECTED ROOM ──────────────────────────────────────
+  let selectedRoom = null;
+
+  // ── RENDER FLOOR MAP ───────────────────────────────────────────
+  function renderMap() {
+    const container = document.getElementById('roomMap');
+    container.innerHTML = '';
+
+    let totalAvailable = 0, totalOccupied = 0,
+        totalCleaning  = 0, totalRooms   = 0;
+
+    FLOORS.forEach(floor => {
+      const floorDiv = document.createElement('div');
+      floorDiv.className = 'floor-section';
+
+      const floorTitle = document.createElement('div');
+      floorTitle.className = 'floor-title';
+      floorTitle.textContent = floor.name;
+      floorDiv.appendChild(floorTitle);
+
+      const roomsGrid = document.createElement('div');
+      roomsGrid.className = 'floor-rooms';
+
+      floor.rooms.forEach(room => {
+        const state  = roomState[room.number];
+        const status = state.status;
+
+        if (status === 'available') totalAvailable++;
+        if (status === 'occupied')  totalOccupied++;
+        if (status === 'cleaning')  totalCleaning++;
+        totalRooms++;
+
+        const roomBtn = document.createElement('div');
+        roomBtn.className = `map-room map-room-${status}`;
+        roomBtn.innerHTML = `
+          <div class="map-room-number">${room.number}</div>
+          <div class="map-room-type">${room.type}</div>
+        `;
+        roomBtn.onclick = () => openModal(room.number);
+        roomsGrid.appendChild(roomBtn);
+      });
+
+      floorDiv.appendChild(roomsGrid);
+      container.appendChild(floorDiv);
+    });
+
+    // Update stat counters
+    document.getElementById('countAvailable').textContent = totalAvailable;
+    document.getElementById('countOccupied').textContent  = totalOccupied;
+    document.getElementById('countCleaning').textContent  = totalCleaning;
+    document.getElementById('countTotal').textContent     = totalRooms;
+  }
+
+  // ── OPEN MODAL ─────────────────────────────────────────────────
+  function openModal(roomNumber) {
+    selectedRoom = roomNumber;
+    const state  = roomState[roomNumber];
+    const status = state.status;
+    const price  = PRICES[state.type];
+
+    // Set modal title
+    document.getElementById('modalRoomTitle').textContent =
+      `Room ${roomNumber} — ${state.type}`;
+
+    // Set badge
+    const badge = document.getElementById('modalRoomType');
+    badge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+    badge.className = `badge ${status}`;
+
+    // Set room price
+    document.getElementById('modalRoomPrice').textContent =
+      `₹${price.toLocaleString('en-IN')} / night`;
+
+    // Show correct panel
+    document.getElementById('availableActions').style.display = 'none';
+    document.getElementById('occupiedActions').style.display  = 'none';
+    document.getElementById('cleaningActions').style.display  = 'none';
+
+    if (status === 'available') {
+      document.getElementById('availableActions').style.display = 'block';
+      document.getElementById('quickCheckinForm').reset();
+    }
+
+    if (status === 'occupied') {
+      document.getElementById('occupiedActions').style.display = 'block';
+      const g = state.guest;
+
+      document.getElementById('occupiedGuestName').textContent = g.name;
+      document.getElementById('occupiedPhone').textContent     = g.phone;
+      document.getElementById('occupiedAdvance').textContent   =
+        `₹${g.advance.toLocaleString('en-IN')}`;
+
+      const checkIn   = new Date(g.checkIn);
+      const now       = new Date();
+      const msPerDay  = 1000 * 60 * 60 * 24;
+      const days      = Math.max(1, Math.ceil((now - checkIn) / msPerDay));
+      const total     = days * price;
+      const balance   = Math.max(0, total - g.advance);
+
+      document.getElementById('occupiedCheckIn').textContent =
+        checkIn.toLocaleDateString('en-IN', {
+          day:'2-digit', month:'short', year:'numeric',
+          hour:'2-digit', minute:'2-digit'
+        });
+
+      document.getElementById('billDays').textContent    = days;
+      document.getElementById('billRate').textContent    =
+        `₹${price.toLocaleString('en-IN')}`;
+      document.getElementById('billTotal').textContent   =
+        `₹${total.toLocaleString('en-IN')}`;
+      document.getElementById('billAdvance').textContent =
+        `₹${g.advance.toLocaleString('en-IN')}`;
+      document.getElementById('billFinal').textContent   =
+        `₹${balance.toLocaleString('en-IN')}`;
+    }
+
+    if (status === 'cleaning') {
+      document.getElementById('cleaningActions').style.display = 'block';
+    }
+
+    document.getElementById('modalOverlay').style.display = 'flex';
+  }
+
+  // ── CLOSE MODAL ────────────────────────────────────────────────
+  function closeModal() {
+    document.getElementById('modalOverlay').style.display = 'none';
+    selectedRoom = null;
+  }
+
+  // Close modal when clicking outside
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ── CHECK-IN ───────────────────────────────────────────────────
+  document.getElementById('quickCheckinForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name    = document.getElementById('guestName').value.trim();
+    const phone   = document.getElementById('guestPhone').value.trim();
+    const idProof = document.getElementById('idProof').value;
+    const advance = parseFloat(document.getElementById('advanceAmount').value) || 0;
+    const payMode = document.querySelector('input[name="payMode"]:checked').value;
+
+    // Basic validation
+    if (!name) {
+      alert('Please enter guest name / అతిథి పేరు నమోదు చేయండి');
+      return;
+    }
+    if (phone.length !== 10 || isNaN(phone)) {
+      alert('Please enter valid 10-digit phone number');
+      return;
+    }
+    if (!idProof) {
+      alert('Please select ID proof type');
+      return;
+    }
+
+    // Update room state
+    roomState[selectedRoom].status = 'occupied';
+    roomState[selectedRoom].guest  = {
+      name, phone, idProof, advance, payMode,
+      checkIn: new Date().toISOString()
+    };
+
+    closeModal();
+    renderMap();
+
+    // Show success message
+    showToast(`✅ ${name} checked into Room ${selectedRoom}`);
+  });
+
+  // ── CHECKOUT ───────────────────────────────────────────────────
+  function checkoutRoom() {
+    if (!selectedRoom) return;
+
+    const state = roomState[selectedRoom];
+    const guest = state.guest;
+
+    const confirmed = confirm(
+      `Checkout ${guest.name} from Room ${selectedRoom}?\n` +
+      `Balance due: ${document.getElementById('billFinal').textContent}`
+    );
+
+    if (confirmed) {
+      roomState[selectedRoom].status = 'cleaning';
+      roomState[selectedRoom].guest  = null;
+      closeModal();
+      renderMap();
+      showToast(`🧹 Room ${selectedRoom} set to cleaning after checkout`);
+    }
+  }
+
+  // ── SET ROOM CLEANING ──────────────────────────────────────────
+  function setRoomCleaning() {
+    if (!selectedRoom) return;
+    roomState[selectedRoom].status = 'cleaning';
+    roomState[selectedRoom].guest  = null;
+    closeModal();
+    renderMap();
+    showToast(`🧹 Room ${selectedRoom} marked as cleaning`);
+  }
+
+  // ── SET ROOM AVAILABLE ─────────────────────────────────────────
+  function setRoomAvailable() {
+    if (!selectedRoom) return;
+    roomState[selectedRoom].status = 'available';
+    closeModal();
+    renderMap();
+    showToast(`✅ Room ${selectedRoom} is now available`);
+  }
+
+  // ── TOAST NOTIFICATION ─────────────────────────────────────────
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.classList.add('toast-show'), 10);
+    setTimeout(() => {
+      toast.classList.remove('toast-show');
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  // ── INIT ───────────────────────────────────────────────────────
+  document.getElementById('currentDate').textContent =
+    new Date().toLocaleDateString('en-IN', {
+      weekday: 'long', year: 'numeric',
+      month: 'long',  day: 'numeric'
+    });
+
+  renderMap();
+  </script>
+
+</body>
+</html>
