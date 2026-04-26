@@ -18,7 +18,7 @@
       <a href="dashboard.html" class="nav-item">
         <span class="nav-icon">📊</span> Dashboard
       </a>
-      <a href="rooms-map.html" class="nav-item active">
+      <a href="rooms-maps.html" class="nav-item active">
         <span class="nav-icon">🏠</span> Room Map
       </a>
       <a href="checkin.html" class="nav-item">
@@ -257,6 +257,14 @@
   </div>
 
   <script>
+  // Auth check — redirect to login if not logged in
+  const savedUser = localStorage.getItem('hotelUser');
+  if (!savedUser) { window.location.href = 'index.html'; }
+  const currentUser = JSON.parse(savedUser);
+  document.querySelector('.topbar-user').textContent =
+  '👤 ' + currentUser.name; 
+
+
   // ── REAL ROOM DATA (Basota Hotel) ──────────────────────────────
   const PRICES = {
     'DBL AC': 1200,

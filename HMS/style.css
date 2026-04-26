@@ -893,3 +893,121 @@ tr:hover td {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+/* ── LOGIN ENHANCEMENTS ── */
+.login-logo {
+  font-size: 48px;
+  margin-bottom: 12px;
+}
+
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* ── ROLE SELECTOR ── */
+.role-selector {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.role-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid #e0e6ed;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.role-option:hover {
+  border-color: #1a3c5e;
+  background: #f0f4f8;
+}
+
+.role-option input {
+  width: auto;
+  margin: 0;
+}
+
+.role-option input:checked + span strong {
+  color: #1a3c5e;
+}
+
+.role-option span {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.role-option span strong {
+  font-size: 14px;
+}
+
+.role-option span small {
+  font-size: 11px;
+  color: #888;
+}
+
+.login-hint {
+  margin-top: 20px;
+  padding: 12px 16px;
+  background: #f0f4f8;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+  line-height: 1.8;
+}
+
+/* ── REPORT ROWS ── */
+.report-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  font-size: 14px;
+  border-bottom: 1px solid #f0f4f8;
+  color: #555;
+}
+
+.report-row:last-child {
+  border-bottom: none;
+}
+
+.report-row strong {
+  color: #1a3c5e;
+  font-size: 15px;
+}
+
+.report-total {
+  margin-top: 8px;
+  padding-top: 12px;
+  border-top: 2px solid #e0e6ed !important;
+  border-bottom: none !important;
+}
+
+.report-total span {
+  font-weight: 600;
+  color: #1a3c5e;
+}
+
+.report-total strong {
+  font-size: 18px;
+  color: #e65100;
+}

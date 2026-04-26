@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basota Hotel – Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="login-page">
+
+  <div class="login-container">
+    <div class="login-card">
+
+      <div class="login-header">
+        <div class="login-logo">🏨</div>
+        <h1>Basota Hotel</h1>
+        <p>Management System / నిర్వహణ వ్యవస్థ</p>
+      </div>
+
+      <form id="loginForm">
+
+        <div class="form-group">
+          <label>Username / వినియోగదారు పేరు</label>
+          <input type="text" id="username"
+                 placeholder="Enter username" autocomplete="off">
+        </div>
+
+        <div class="form-group">
+          <label>Password / పాస్‌వర్డ్</label>
+          <div class="password-wrap">
+            <input type="password" id="password"
+                   placeholder="Enter password">
+            <span class="eye-btn" onclick="togglePassword()">👁️</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Login As / లాగిన్ వలె</label>
+          <div class="role-selector">
+            <label class="role-option">
+              <input type="radio" name="role"
+                     value="receptionist" checked>
+              <span>
+                <strong>👤 Receptionist</strong>
+                <small>రిసెప్షనిస్ట్</small>
+              </span>
+            </label>
+            <label class="role-option">
+              <input type="radio" name="role" value="owner">
+              <span>
+                <strong>👑 Owner</strong>
+                <small>యజమాని</small>
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <div id="loginError" class="error-msg" style="display:none">
+          ❌ Invalid username or password
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">
+          Login / లాగిన్
+        </button>
+
+      </form>
+
+      <div class="login-hint">
+        <p>Receptionist: <strong>reception / rec123</strong></p>
+        <p>Owner: <strong>owner / own123</strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+  // ── USER ACCOUNTS ─────────────────────────────────────────────
+  const USERS = {
+    receptionist: {
+      username: 'reception',
+      password: 'rec123',
+      role: 'receptionist',
+      name: 'Receptionist',
+      redirect: 'rooms-map.html'
+    },
+    owner: {
+      username: 'owner',
+      password: 'own123',
+      role: 'owner',
+      name: 'Owner',
+      redirect: 'owner-dashboard.html'
+    }
+  };
+
+  // ── LOGIN FORM ────────────────────────────────────────────────
+  document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const role     = document.querySelector('input[name="role"]:checked').value;
+    const user     = USERS[role];
+    const errorDiv = document.getElementById('loginError');
+
+    if (username === user.username && password === user.password) {
+      // Save session
+      localStorage.setItem('hotelUser', JSON.stringify({
+        name: user.name,
+        role: user.role
+      }));
+      // Redirect
+      window.location.href = user.redirect;
+    } else {
+      errorDiv.style.display = 'block';
+      document.getElementById('password').value = '';
+      setTimeout(() => { errorDiv.style.display = 'none'; }, 3000);
+    }
+  });
+
+  // ── TOGGLE PASSWORD VISIBILITY ────────────────────────────────
+  function togglePassword() {
+    const input = document.getElementById('password');
+    input.type  = input.type === 'password' ? 'text' : 'password';
+  }
+
+  // If already logged in, redirect
+  const saved = localStorage.getItem('hotelUser');
+  if (saved) {
+    const u = JSON.parse(saved);
+    if (u.role === 'owner') window.location.href = 'owner-dashboard.html';
+    else window.location.href = 'rooms-map.html';
+  }
+  </script>
+
+</body>
+</html>

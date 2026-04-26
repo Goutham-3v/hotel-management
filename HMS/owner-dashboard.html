@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basota Hotel – Owner Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="app-page">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <h2>🏨 Basota Hotel</h2>
+      <p>Owner Panel / యజమాని</p>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="owner-dashboard.html" class="nav-item active">
+        <span class="nav-icon">📊</span> Dashboard
+      </a>
+      <a href="rooms-map.html" class="nav-item">
+        <span class="nav-icon">🏠</span> Room Map
+      </a>
+      <a href="owner-reports.html" class="nav-item">
+        <span class="nav-icon">📈</span> Reports
+      </a>
+      <a href="owner-bookings.html" class="nav-item">
+        <span class="nav-icon">📋</span> All Bookings
+      </a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="#" class="nav-item logout" onclick="logout()">
+        <span class="nav-icon">🚪</span> Logout
+      </a>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <div class="topbar">
+      <h2>Owner Dashboard / యజమాని డాష్‌బోర్డ్</h2>
+      <div class="topbar-right">
+        <span class="topbar-date" id="currentDate"></span>
+        <span class="topbar-user">👑 <span id="userName">Owner</span></span>
+      </div>
+    </div>
+
+    <!-- REVENUE STATS -->
+    <div class="stats-grid" style="margin:24px 28px 0">
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#e8f5e9">🛏️</div>
+        <div>
+          <div class="number">26</div>
+          <div class="label">Total Rooms</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#e3f2fd">✅</div>
+        <div>
+          <div class="number" style="color:#1565c0"
+               id="ownerVacant">—</div>
+          <div class="label">Vacant Today</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#fdecea">🔴</div>
+        <div>
+          <div class="number" style="color:#c62828"
+               id="ownerOccupied">—</div>
+          <div class="label">Occupied Today</div>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon" style="background:#fff8e1">💰</div>
+        <div>
+          <div class="number" style="color:#e65100"
+               id="ownerRevenue">₹0</div>
+          <div class="label">Today's Revenue</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLLECTION BREAKUP — like Hotel 360 settlement report -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;
+                gap:20px;margin:20px 28px 0">
+
+      <div class="section-card">
+        <div class="section-header">
+          <h3>💵 Collection Breakup / వసూలు వివరాలు</h3>
+        </div>
+        <div style="padding:20px">
+          <div class="report-row">
+            <span>Cash / నగదు</span>
+            <strong id="colCash">₹0</strong>
+          </div>
+          <div class="report-row">
+            <span>UPI / యూపీఐ</span>
+            <strong id="colUpi">₹0</strong>
+          </div>
+          <div class="report-row">
+            <span>Card / కార్డు</span>
+            <strong id="colCard">₹0</strong>
+          </div>
+          <div class="report-row">
+            <span>Online / ఆన్‌లైన్</span>
+            <strong id="colOnline">₹0</strong>
+          </div>
+          <div class="report-row report-total">
+            <span>Total / మొత్తం</span>
+            <strong id="colTotal">₹0</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <h3>📊 Occupancy / ఆక్యుపెన్సీ</h3>
+        </div>
+        <div style="padding:20px">
+          <div class="report-row">
+            <span>Total Rooms</span>
+            <strong>26</strong>
+          </div>
+          <div class="report-row">
+            <span>Occupied</span>
+            <strong id="occOccupied">0</strong>
+          </div>
+          <div class="report-row">
+            <span>Vacant</span>
+            <strong id="occVacant">26</strong>
+          </div>
+          <div class="report-row">
+            <span>Cleaning</span>
+            <strong id="occCleaning">0</strong>
+          </div>
+          <div class="report-row report-total">
+            <span>Occupancy %</span>
+            <strong id="occPercent">0%</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- TODAY'S CHECK-INS TABLE -->
+    <div class="section-card" style="margin:20px 28px 28px">
+      <div class="section-header">
+        <h3>📋 Today's Activity / నేటి కార్యకలాపాలు</h3>
+        <span id="activityDate" style="font-size:13px;color:#888"></span>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Room</th>
+              <th>Guest / అతిథి</th>
+              <th>Type</th>
+              <th>Check-In</th>
+              <th>Payment</th>
+              <th>Advance</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="activityTable">
+            <tr>
+              <td colspan="7" style="text-align:center;
+                  color:#aaa;padding:30px">
+                No bookings yet today
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+  // ── AUTH CHECK ────────────────────────────────────────────────
+  const saved = localStorage.getItem('hotelUser');
+  if (!saved) { window.location.href = 'index.html'; }
+  const user = JSON.parse(saved);
+  if (user.role !== 'owner') { window.location.href = 'index.html'; }
+  document.getElementById('userName').textContent = user.name;
+
+  // ── LOGOUT ────────────────────────────────────────────────────
+  function logout() {
+    localStorage.removeItem('hotelUser');
+    window.location.href = 'index.html';
+  }
+
+  // ── DEMO DATA (will come from backend later) ──────────────────
+  const demoBookings = [
+    { room:'202', guest:'Suresh Babu',   type:'DBL AC',
+      checkIn:'09:30', payMode:'Cash',   advance:500,  status:'occupied' },
+    { room:'205', guest:'Lakshmi Devi',  type:'SNG AC',
+      checkIn:'11:00', payMode:'UPI',    advance:900,  status:'occupied' },
+    { room:'301', guest:'Ravi Kumar',    type:'DBL AC',
+      checkIn:'13:45', payMode:'Card',   advance:1200, status:'occupied' },
+    { room:'404', guest:'Anand Reddy',   type:'SNG AC',
+      checkIn:'15:20', payMode:'Online', advance:0,    status:'occupied' },
+  ];
+
+  // ── RENDER TABLE ──────────────────────────────────────────────
+  function renderActivity() {
+    const tbody = document.getElementById('activityTable');
+    if (demoBookings.length === 0) return;
+
+    tbody.innerHTML = demoBookings.map(b => `
+      <tr>
+        <td><strong>${b.room}</strong></td>
+        <td>${b.guest}</td>
+        <td><span class="badge available"
+            style="font-size:11px">${b.type}</span></td>
+        <td>${b.checkIn}</td>
+        <td>${b.payMode}</td>
+        <td>₹${b.advance.toLocaleString('en-IN')}</td>
+        <td><span class="badge occupied"
+            style="font-size:11px">Occupied</span></td>
+      </tr>
+    `).join('');
+  }
+
+  // ── CALCULATE STATS ───────────────────────────────────────────
+  function calcStats() {
+    const occupied  = 11;
+    const vacant    = 13;
+    const cleaning  = 2;
+    const occupancy = Math.round((occupied / 26) * 100);
+
+    document.getElementById('ownerVacant').textContent   = vacant;
+    document.getElementById('ownerOccupied').textContent = occupied;
+    document.getElementById('ownerRevenue').textContent  = '₹12,300';
+    document.getElementById('occOccupied').textContent   = occupied;
+    document.getElementById('occVacant').textContent     = vacant;
+    document.getElementById('occCleaning').textContent   = cleaning;
+    document.getElementById('occPercent').textContent    = occupancy + '%';
+
+    // Collection breakup
+    document.getElementById('colCash').textContent   = '₹8,500';
+    document.getElementById('colUpi').textContent    = '₹2,800';
+    document.getElementById('colCard').textContent   = '₹1,000';
+    document.getElementById('colOnline').textContent = '₹0';
+    document.getElementById('colTotal').textContent  = '₹12,300';
+  }
+
+  // ── DATE ──────────────────────────────────────────────────────
+  const dateStr = new Date().toLocaleDateString('en-IN', {
+    weekday:'long', year:'numeric',
+    month:'long',  day:'numeric'
+  });
+  document.getElementById('currentDate').textContent  = dateStr;
+  document.getElementById('activityDate').textContent = dateStr;
+
+  // ── INIT ──────────────────────────────────────────────────────
+  calcStats();
+  renderActivity();
+  </script>
+
+</body>
+</html>
