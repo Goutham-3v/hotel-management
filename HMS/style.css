@@ -1,0 +1,253 @@
+/* ── RESET & BASE ── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f6f9;
+  color: #333;
+  font-size: 15px;
+}
+
+/* ── HEADER ── */
+header {
+  background-color: #1a3c5e;
+  color: white;
+  padding: 18px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+header p {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* ── MAIN LAYOUT ── */
+main {
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 0 24px;
+}
+
+/* ── SECTION TITLES ── */
+h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a3c5e;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e0e6ed;
+}
+
+/* ── STAT CARDS (dashboard overview) ── */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #e0e6ed;
+}
+
+.stat-card .number {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a3c5e;
+}
+
+.stat-card .label {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* ── ROOM CARDS ── */
+.rooms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.room-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  border: 1px solid #e0e6ed;
+}
+
+.room-card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1a3c5e;
+}
+
+.room-card p {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 6px;
+}
+
+/* ── STATUS BADGES ── */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.badge.available {
+  background-color: #e6f4ea;
+  color: #2e7d32;
+}
+
+.badge.occupied {
+  background-color: #fdecea;
+  color: #c62828;
+}
+
+.badge.cleaning {
+  background-color: #fff8e1;
+  color: #f57f17;
+}
+
+/* ── BUTTONS ── */
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #1a3c5e;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #254d75;
+}
+
+.btn-danger {
+  background-color: #e53935;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c62828;
+}
+
+.btn:disabled {
+  background-color: #ccc;
+  color: #888;
+  cursor: not-allowed;
+}
+
+/* ── FORM ── */
+.form-card {
+  background: white;
+  border-radius: 10px;
+  padding: 28px;
+  border: 1px solid #e0e6ed;
+  margin-bottom: 36px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fafafa;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #1a3c5e;
+  background: white;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── BOOKINGS TABLE ── */
+.table-card {
+  background: white;
+  border-radius: 10px;
+  padding: 28px;
+  border: 1px solid #e0e6ed;
+  margin-bottom: 36px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #f0f4f8;
+}
+
+th {
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #f0f4f8;
+  color: #333;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background-color: #fafbfc;
+}

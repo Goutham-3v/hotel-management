@@ -4,136 +4,149 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Basota Hotel</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- PAGE HEADER -->
+  <!-- HEADER -->
   <header>
     <h1>Basota Hotel Management System</h1>
     <p>Nellore, Andhra Pradesh</p>
   </header>
 
-  <hr>
+  <main>
 
-  <!-- DASHBOARD STATS -->
-  <section>
-    <h2>Today's Overview</h2>
+    <!-- STATS -->
+    <section>
+      <h2>Today's Overview</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="number">18</div>
+          <div class="label">Total Rooms</div>
+        </div>
+        <div class="stat-card">
+          <div class="number" style="color:#2e7d32">10</div>
+          <div class="label">Available</div>
+        </div>
+        <div class="stat-card">
+          <div class="number" style="color:#c62828">8</div>
+          <div class="label">Occupied</div>
+        </div>
+        <div class="stat-card">
+          <div class="number">₹9,600</div>
+          <div class="label">Today's Revenue</div>
+        </div>
+      </div>
+    </section>
 
-    <div>
-      <span>Total Rooms: 18</span> &nbsp;|&nbsp;
-      <span>Available: 10</span> &nbsp;|&nbsp;
-      <span>Occupied: 8</span> &nbsp;|&nbsp;
-      <span>Today's Revenue: ₹9,600</span>
-    </div>
-  </section>
+    <!-- ROOMS -->
+    <section>
+      <h2>Rooms</h2>
+      <div class="rooms-grid">
 
-  <hr>
+        <div class="room-card">
+          <h3>Room 101</h3>
+          <p>Type: AC Double</p>
+          <p>Price: ₹1,200 / night</p>
+          <span class="badge available">Available</span><br>
+          <button class="btn btn-primary">Book Now</button>
+        </div>
 
-  <!-- ROOM CARDS -->
-  <section>
-    <h2>Rooms</h2>
+        <div class="room-card">
+          <h3>Room 102</h3>
+          <p>Type: Non-AC Single</p>
+          <p>Price: ₹700 / night</p>
+          <span class="badge occupied">Occupied</span><br>
+          <button class="btn" disabled>Occupied</button>
+        </div>
 
-    <!-- Room Card 1 -->
-    <div>
-      <h3>Room 101</h3>
-      <p>Type: AC Double</p>
-      <p>Price: ₹1,200 / night</p>
-      <p>Status: <strong>Available</strong></p>
-      <button>Book Now</button>
-    </div>
+        <div class="room-card">
+          <h3>Room 103</h3>
+          <p>Type: AC Single</p>
+          <p>Price: ₹900 / night</p>
+          <span class="badge available">Available</span><br>
+          <button class="btn btn-primary">Book Now</button>
+        </div>
 
-    <br>
+      </div>
+    </section>
 
-    <!-- Room Card 2 -->
-    <div>
-      <h3>Room 102</h3>
-      <p>Type: Non-AC Single</p>
-      <p>Price: ₹700 / night</p>
-      <p>Status: <strong>Occupied</strong></p>
-      <button disabled>Occupied</button>
-    </div>
+    <!-- CHECK-IN FORM -->
+    <section>
+      <h2>New Check-In</h2>
+      <div class="form-card">
+        <form>
 
-    <br>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Customer Name</label>
+              <input type="text" placeholder="Enter full name">
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" placeholder="10-digit mobile number">
+            </div>
+          </div>
 
-    <!-- Room Card 3 -->
-    <div>
-      <h3>Room 103</h3>
-      <p>Type: AC Single</p>
-      <p>Price: ₹900 / night</p>
-      <p>Status: <strong>Available</strong></p>
-      <button>Book Now</button>
-    </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Select Room</label>
+              <select>
+                <option value="">-- Select Room --</option>
+                <option value="101">Room 101 - AC Double - ₹1,200/night</option>
+                <option value="103">Room 103 - AC Single - ₹900/night</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Advance Payment (₹)</label>
+              <input type="number" placeholder="Enter advance amount">
+            </div>
+          </div>
 
-  </section>
+          <button type="submit" class="btn btn-primary">Check In Customer</button>
 
-  <hr>
+        </form>
+      </div>
+    </section>
 
-  <!-- CHECK-IN FORM -->
-  <section>
-    <h2>New Check-In</h2>
+    <!-- ACTIVE BOOKINGS -->
+    <section>
+      <h2>Active Bookings</h2>
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Phone</th>
+              <th>Room</th>
+              <th>Check-In Time</th>
+              <th>Advance Paid</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ravi Kumar</td>
+              <td>9876543210</td>
+              <td>Room 102</td>
+              <td>2025-04-25 14:30</td>
+              <td>₹500</td>
+              <td><button class="btn btn-danger">Checkout</button></td>
+            </tr>
+            <tr>
+              <td>Priya Sharma</td>
+              <td>9123456780</td>
+              <td>Room 105</td>
+              <td>2025-04-24 11:00</td>
+              <td>₹1,000</td>
+              <td><button class="btn btn-danger">Checkout</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <form>
-
-      <label>Customer Name:</label><br>
-      <input type="text" placeholder="Enter full name"><br><br>
-
-      <label>Phone Number:</label><br>
-      <input type="tel" placeholder="10-digit mobile number"><br><br>
-
-      <label>Select Room:</label><br>
-      <select>
-        <option value="">-- Select Room --</option>
-        <option value="101">Room 101 - AC Double - ₹1200/night</option>
-        <option value="103">Room 103 - AC Single - ₹900/night</option>
-      </select><br><br>
-
-      <label>Advance Payment (₹):</label><br>
-      <input type="number" placeholder="Enter advance amount"><br><br>
-
-      <button type="submit">Check In Customer</button>
-
-    </form>
-
-  </section>
-
-  <hr>
-
-  <!-- ACTIVE BOOKINGS TABLE -->
-  <section>
-    <h2>Active Bookings</h2>
-
-    <table border="1">
-      <thead>
-        <tr>
-          <th>Customer Name</th>
-          <th>Phone</th>
-          <th>Room</th>
-          <th>Check-In Time</th>
-          <th>Advance Paid</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Ravi Kumar</td>
-          <td>9876543210</td>
-          <td>Room 102</td>
-          <td>2025-04-25 14:30</td>
-          <td>₹500</td>
-          <td><button>Checkout</button></td>
-        </tr>
-        <tr>
-          <td>Priya Sharma</td>
-          <td>9123456780</td>
-          <td>Room 105</td>
-          <td>2025-04-24 11:00</td>
-          <td>₹1,000</td>
-          <td><button>Checkout</button></td>
-        </tr>
-      </tbody>
-    </table>
-
-  </section>
+  </main>
 
 </body>
 </html>
